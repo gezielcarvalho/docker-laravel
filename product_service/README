@@ -1,0 +1,27 @@
+docker-compose up -d
+
+docker-compose exec productapp bash
+
+composer create-project --prefer-dist laravel/laravel blog
+
+DB_HOST=productapp-mysql
+DB_DATABASE=productapp
+DB_USERNAME=root
+REDIS_HOST=productapp-redis
+
+mv * ./..
+mv .* ./..
+cd ..
+rm -Rf blog/
+
+sudo touch .docker/dbdata/.gitignore
+
+# Adicionar conteúdo "*"
+
+exit
+
+docker-compose up -d
+
+docker-compose down
+
+sudo docker-compose up -d --build
